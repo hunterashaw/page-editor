@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+        @apply underline-offset-[3px] decoration-[3px];
+    }
+    summary::marker {
+        content: '';
+    }
+    summary {
+        @apply cursor-pointer p-4 text-xl border-solid border-gray-600 border-b select-none;
+    }
+    summary::before {
+        content: '+';
+        @apply mr-4;
+    }
+    details[open] > summary::before {
+        content: '-';
+    }
+    details > p {
+        @apply p-4;
+    }
+    main {
+        @apply mt-[80px];
+    }
+    section {
+        @apply xl:px-[10%];
+    }
+    input {
+        @apply px-4 py-2 w-full max-w-sm transition rounded-lg bg-gray-50;
+    }
+    button {
+        @apply select-none rounded-lg py-2 px-6 flex gap-2 w-max transition font-medium bg-transparent border-transparent border-solid border items-center;
+    }
+    button:disabled {
+        @apply pointer-events-none opacity-50;
+    }
+}
