@@ -35,6 +35,12 @@
     button {
         @apply select-none rounded-lg py-2 px-6 flex gap-2 w-max transition font-medium bg-transparent border-transparent border-solid border items-center;
     }
+    button:hover {
+        @apply bg-white bg-opacity-20;
+    }
+    button:active {
+        @apply bg-white bg-opacity-30;
+    }
     button:disabled {
         @apply pointer-events-none opacity-50;
     }

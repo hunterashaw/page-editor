@@ -8,6 +8,7 @@
         "tailwindcss": "^3.1.8"
     },
     "dependencies": {
+        "clsx": "^1.2.1",
         "preact-render-to-string": "^5.2.5"
     },
     "scripts": {
