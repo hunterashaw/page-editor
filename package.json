@@ -13,8 +13,8 @@
     },
     "scripts": {
         "start": "run-p watch:app watch:style serve",
-        "serve": "npx browser-sync start --server 'dist' --files 'dist' --no-open --ws",
-        "watch:app": "npx esbuild src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=dist/builder.js --jsx-import-source=preact --jsx=automatic --watch",
-        "watch:style": "npx tailwindcss -i ./src/style.css -o ./dist/style.css --watch"
+        "serve": "npx browser-sync start --server 'docs' --files 'docs' --no-open --ws",
+        "watch:app": "npx esbuild src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=docs/builder.js --jsx-import-source=preact --jsx=automatic --watch",
+        "watch:style": "npx tailwindcss -i ./src/style.css -o ./docs/style.css --watch"
     }
 }
