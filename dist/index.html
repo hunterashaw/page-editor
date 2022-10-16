@@ -2,9 +2,17 @@
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&family=EB+Garamond&family=Inter:wght@400;500&display=swap" rel="stylesheet">
         <link href="style.css" rel="stylesheet" />
         <script src="builder.js" ></script>
     </head>
-    <body><div id="page-builder"></div></body>
+    <body>
+        <div class="h-full">
+            <header class="border-b border-gray-200 flex gap-2 pad" style="height: 60px;">
+                <button id="data-button">Get Data</button>
+                <button id="html-button">Get HTML</button>
+            </header>
+            <div style="height: calc(100vh - 60px)" id="page-builder"></div>
+        </div>
+    </body>
 </html>

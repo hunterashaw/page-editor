@@ -7,21 +7,20 @@
         font-family: 'Inter', sans-serif;
         @apply underline-offset-[3px] decoration-[3px];
     }
+    details {
+        @apply border border-gray-200 border-solid;
+    }
     summary::marker {
         content: '';
     }
     summary {
-        @apply cursor-pointer p-4 text-xl border-solid border-gray-600 border-b select-none;
+        @apply pad cursor-pointer text-xs select-none ;
     }
-    summary::before {
-        content: '+';
-        @apply mr-4;
+    details[open] {
+        @apply pb-4;
     }
-    details[open] > summary::before {
-        content: '-';
-    }
-    details > p {
-        @apply p-4;
+    details[open] > summary {
+        @apply pb-0;
     }
     main {
         @apply mt-[80px];
@@ -30,16 +29,10 @@
         @apply xl:px-[10%];
     }
     input, textarea, select {
-        @apply px-4 py-2 w-full max-w-sm transition rounded-lg bg-gray-50;
+        @apply pad w-full max-w-sm transition bg-gray-50;
     }
     button {
-        @apply select-none rounded-lg py-2 px-6 flex gap-2 w-max transition font-medium bg-transparent border-transparent border-solid border items-center;
-    }
-    button:hover {
-        @apply bg-white bg-opacity-20;
-    }
-    button:active {
-        @apply bg-white bg-opacity-30;
+        @apply select-none pad flex gap-2 w-max transition bg-transparent border-transparent border-solid border items-center;
     }
     button:disabled {
         @apply pointer-events-none opacity-50;

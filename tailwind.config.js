@@ -13,6 +13,10 @@ module.exports = {
     content: ['./src/**/*.{tsx,jsx}'],
     theme: {
         extend: {
+            fontFamily: {
+                display: `'EB Garamond', serif`,
+                other: `'Cormorant', serif`
+            },
             colors: {
                 gray: generateColor(30, 1),
                 primary: generateColor(5, 40),
@@ -30,6 +34,9 @@ module.exports = {
                 '.cols-c': {
                     gridTemplateColumns: 'max-content auto max-content'
                 },
+                '.cols-m': {
+                    gridTemplateColumns: 'auto max-content auto'
+                },
                 '.cols-r': {
                     gridTemplateColumns: 'auto max-content'
                 },
@@ -41,6 +48,9 @@ module.exports = {
                 },
                 '.rows-c': {
                     gridTemplateRows: 'max-content auto max-content'
+                },
+                '.pad': {
+                    padding: '.5rem 1rem'
                 }
             })
         })

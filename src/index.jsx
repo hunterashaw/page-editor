@@ -1,55 +1,120 @@
 import { render } from 'preact'
-import { useState } from 'preact/hooks'
+import { PageBuilder } from './components/PageBuilder'
+import clsx from 'clsx'
 
-import Header from './components/header'
-import { AddIcon, ButtonIcon, ParagraphIcon } from './common/icon'
-import Properties from './components/properties'
-import Layers from './components/layers'
-import Preview from './components/preview'
+const components = {
+    cta: {
+        name: 'Call to Action',
+        description:
+            'Single column section with a title, paragraph and button.',
+        component: ({ title, subtitle, label, align }) => {
+            const textAlignment = {
+                left: 'text-left',
+                center: 'text-center',
+                right: 'text-right'
+            }[align]
 
-function PageBuilder() {
-    const [blocks, setBlocks] = useState([
-        {
-            key: '1',
-            type: 'paragraph',
-            properties: { content: 'Hello world.' }
+            const buttonAlignment = {
+                left: 'justify-start',
+                center: 'justify-center',
+                right: 'justify-end'
+            }[align]
+
+            return (
+                <section
+                    class={clsx(
+                        'py-24 grid gap-8 px-6 md:px-[10%] lg:px-[20%]',
+                        textAlignment,
+                        buttonAlignment
+                    )}
+                >
+                    <h1 class="font-display text-6xl max-w-lg">{title}</h1>
+                    <p class="text-sm max-w-lg">{subtitle}</p>
+                    <div class={clsx('flex', buttonAlignment)}>
+                        <button class="font-medium border-gray-400 border border-solid">
+                            {label}
+                        </button>
+                    </div>
+                </section>
+            )
         },
-        { key: '2', type: 'button', properties: { text: 'Hello world.' } },
-        { key: '3', type: 'paragraph', properties: { content: 'Hello world.' } }
-    ])
-    const [selectedBlock, setSelectedBlock] = useState(blocks[0])
-    const updateSelectedBlock = (name, value) => {
-        const i = blocks.findIndex(({ key }) => selectedBlock.key === key)
-        blocks[i].properties[name] = value
-        setBlocks(blocks.slice())
+        properties: {
+            title: 'Lorem ipsum dolor sit amet, consectetur',
+            subtitle:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            label: 'Get Started',
+            align: ['left', 'center', 'right']
+        },
+        icon: (
+            <svg
+                class="w-6 h-6"
+                width="300"
+                height="300"
+                viewBox="0 0 300 300"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <rect
+                    x="11"
+                    y="52"
+                    width="277"
+                    height="55"
+                    fill="currentColor"
+                />
+                <rect
+                    x="11"
+                    y="136"
+                    width="219.074"
+                    height="13.0574"
+                    fill="currentColor"
+                />
+                <rect
+                    x="11"
+                    y="157"
+                    width="177"
+                    height="13"
+                    fill="currentColor"
+                />
+                <rect
+                    x="11"
+                    y="178"
+                    width="200"
+                    height="13"
+                    fill="currentColor"
+                />
+                <rect
+                    x="11"
+                    y="220"
+                    width="94.3033"
+                    height="27.5656"
+                    rx="6"
+                    fill="currentColor"
+                />
+            </svg>
+        )
     }
-
-    return (
-        <div>
-            <Header />
-            <div class="grid cols-r h-[calc(100%-3rem)]">
-                <Preview {...{ blocks, selectedBlock, setSelectedBlock }} />
-                <div class="grid grid-rows-2 min-w-[20vw] border-l border-solid border-gray-200">
-                    <Layers
-                        {...{
-                            blocks,
-                            setBlocks,
-                            selectedBlock,
-                            setSelectedBlock
-                        }}
-                    />
-                    <Properties
-                        {...{
-                            selectedBlock,
-                            updateSelectedBlock
-                        }}
-                    />
-                </div>
-            </div>
-        </div>
-    )
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    render(<PageBuilder />, document.getElementById('page-builder'))
+    let getHTML, getData
+    document.getElementById('data-button').addEventListener('click', () => {
+        alert(JSON.stringify(getData(), null, 2))
+    })
+    document.getElementById('html-button').addEventListener('click', () => {
+        alert(getHTML())
+    })
+    render(
+        <PageBuilder
+            {...{
+                components,
+                setDataCallback: c => {
+                    getData = c
+                },
+                setHTMLCallback: c => {
+                    getHTML = c
+                }
+            }}
+        />,
+        document.getElementById('page-builder')
+    )
 })
