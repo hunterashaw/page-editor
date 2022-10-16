@@ -4,8 +4,13 @@ import render from 'preact-render-to-string'
 import Properties from './Properties'
 import Preview from './Preview'
 
-export function PageBuilder({ components, setDataCallback, setHTMLCallback }) {
-    const [blocks, setBlocks] = useState([])
+export function PageBuilder({
+    components,
+    initialBlocks = [],
+    setDataCallback,
+    setHTMLCallback
+}) {
+    const [blocks, setBlocks] = useState(initialBlocks)
     const [selectedBlock, setSelectedBlock] = useState(null)
 
     const updateSelectedBlock = (name, value) => {

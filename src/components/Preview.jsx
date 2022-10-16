@@ -3,6 +3,7 @@ import render from 'preact-render-to-string'
 import { CaretDownIcon, CaretUpIcon, TrashIcon } from './Icons'
 import AddSection from './AddSection'
 import BlockContainer from './BlockContainer'
+import { Fragment } from 'preact'
 
 export default function Preview({
     components,
@@ -55,13 +56,12 @@ export default function Preview({
                 }
 
                 return (
-                    <>
+                    <Fragment key={block.key}>
                         <AddSection
                             onClick={newBlock => addSection(newBlock, i)}
                             components={components}
                         />
                         <div
-                            key={block.key}
                             class="group grid grid-cols-[4rem,auto] mr-16"
                             onClick={e => e.stopPropagation()}
                         >
@@ -94,7 +94,7 @@ export default function Preview({
                                 }}
                             />
                         </div>
-                    </>
+                    </Fragment>
                 )
             })}
             <AddSection
