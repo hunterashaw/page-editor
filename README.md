@@ -3,6 +3,10 @@
 React-based page block editor which accepts a set of react components that the user can use to assemble page content.
 Outputs HTML & JSON data for static and dynamic rendering.
 
+## Goal
+
+To provide a simple, extensible page editor similar to Wordpress' Gutenberg: https://wordpress.org/gutenberg/
+
 ## Usage
 From src/index.jsx:
 ``` javascript
